@@ -1,0 +1,34 @@
+Vars:
+  _first
+  _ground
+  _abeamerican
+  _brittamerican
+
+Truth:
+  _first
+  ~ _ground
+  _abeamerican
+  ~ _brittamerican
+
+Actions:
+
+Protocols:
+  announcefirst
+    if _true
+    then _first
+
+Agents:
+  Abe
+    Info:
+      _abeamerican
+      (_first <-> _ground)
+    Acts:
+    Goal:
+      ((Abe knows _ground) | (Abe knows ~ _ground))
+  Britt
+    Info:
+      ~ _brittamerican
+      (_first <-> ~ _ground)
+    Acts:
+    Goal:
+      ((Britt knows _ground) | (Britt knows ~ _ground))

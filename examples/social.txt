@@ -1,0 +1,77 @@
+Vars:
+  _gaykate
+  _gayjane
+  _gayanne
+  _musicaljane
+  _musicalkate
+  _musicalanne
+  _orfeojane
+  _orfeokate
+  _orfeoanne
+
+Truth:
+  _gaykate
+  _gayjane
+  ~ _gayanne
+  ~ _musicalanne
+  ~ _orfeoanne
+
+Actions:
+  musicaljane
+    pre _gayjane
+    post _musicaljane
+
+  musicalkate
+    pre _gaykate
+    post _musicalkate
+
+  orfeojanek
+    pre _musicalkate
+    post (_musicaljane & _orfeojane)
+
+  orfeojanea
+    pre _musicalanne
+    post (_musicaljane & _orfeojane)
+
+  orfeokatej
+    pre _musicaljane
+    post (_musicalkate & _orfeokate)
+  
+  orfeokatea
+    pre _musicalanne
+    post (_musicalkate & _orfeokate)
+
+Protocols:
+  
+
+Agents:
+  Kate
+    Info:
+      _gaykate
+      (_musicaljane -> _gayjane)
+      (_musicalanne -> _gayanne)
+      (_musicalkate -> _gaykate)
+    Acts:
+      musicalkate
+      orfeokatea
+      orfeokatej
+    Goal:
+      ((((Kate knows _gayjane) & (Kate knows _orfeojane)) | (Kate knows ~ _gayjane)) | (((Kate knows _gayanne) & (Kate knows _orfeoanne)) | (Kate knows ~ _gayanne)))
+  Jane
+    Info:
+      _gayjane
+      (_musicalkate -> _gaykate)
+      (_musicalanne -> _gayanne)
+      (_musicaljane -> _gayjane)
+    Acts:
+      musicaljane
+      orfeojanea
+      orfeojanek
+    Goal:
+      ((((Jane knows _gaykate) & (Jane knows _orfeokate)) | (Jane knows ~ _gaykate)) | (((Jane knows _gayanne) & (Jane knows _orfeoanne)) | (Jane knows ~ _gayanne)))
+  Anne
+    Info:
+      ~ _gayanne
+    Acts:
+    Goal:
+      _true
